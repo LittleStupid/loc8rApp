@@ -10,8 +10,9 @@ var ctrlOthers = require('../controllers/others');
 
 /* Location page */
 router.get( '/', ctrlLocations.homelist );
-router.get( '/location', ctrlLocations.locationInfo );
-router.get( '/location/review/new', ctrlLocations.addReview );
+router.get( '/locations/:locationid', ctrlLocations.locationInfo );
+router.get( '/locations/:locationid/reviews/new', ctrlLocations.addReview );
+router.post( '/locations/:locationid/reviews/new', ctrlLocations.doAddReview );
 
 /* Other page */
 router.get( '/about', ctrlOthers.about );

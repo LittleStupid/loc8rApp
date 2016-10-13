@@ -26,13 +26,14 @@ var sendJsonResponse = function( res, status, content ) {
 module.exports.locationsListByDistance = function( req, res ) {
   var lng = parseFloat(req.query.lng);
   var lat = parseFloat(req.query.lat);
+  var maxDistance = parseFloat(req.query.maxDistance);
   var point = {
     type: "Point",
     coordinates: [lng, lat]
   };
   var geoOptions = {
     spherical: true,
-    maxDistance: theEarth.getRadsFromDistance(20),
+    maxDistance: theEarth.getRadsFromDistance(maxDistance),
     num: 10
   };
   if( !lng || !lat ) {
@@ -91,7 +92,7 @@ module.exports.locationsReadOne = function( req, res ) {
   if( req.params && req.params.locationid ) {
     Loc
       .findById( req.params.locationid )
-      .select( 'name reviews')
+      //.select( 'name reviews')
       .exec( function( err, location ) {
         if( !location ) {
           sendJsonResponse( res, 404, {
