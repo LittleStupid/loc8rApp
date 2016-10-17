@@ -12,8 +12,13 @@ function loc8rData ($http) {
     return $http.get('/api/locations/' + locationid);
   };
 
+  var addReviewById = function(locationid, data) {
+    return $http.post('/api/locations/' + locationid + '/reviews', data);
+  };
+
   return {
     locationByCoords : locationByCoords,
-    locationById : locationById
+    locationById : locationById,
+    addReviewById : addReviewById
   };
 }
