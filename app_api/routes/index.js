@@ -1,7 +1,13 @@
 var express = require('express');
 var router = express.Router();
+
 var ctrlLocations = require('../controllers/locations');
 var ctrlReviews = require('../controllers/reviews');
+var ctrlAuth = require('../controllers/authentication');
+
+// authentications
+router.post('/register', ctrlAuth.register);
+router.post('/login', ctrlAuth.login);
 
 // locations
 router.get('/locations', ctrlLocations.locationsListByDistance);
