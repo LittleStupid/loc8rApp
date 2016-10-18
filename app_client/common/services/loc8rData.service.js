@@ -13,9 +13,12 @@ function loc8rData ($http, authentication) {
   };
 
   var addReviewById = function(locationid, data) {
+    console.log("###");
+    console.log(authentication.getToken());
+    console.log("###");
     return $http.post('/api/locations/' + locationid + '/reviews', data, {
       headers: {
-        Authorization: 'Bearer' + authentication.getToken()
+        Authorization: 'Bearer ' + authentication.getToken()
       }
     });
   };
